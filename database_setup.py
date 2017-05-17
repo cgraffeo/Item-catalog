@@ -6,58 +6,72 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
-# class User(Base):
-#     __tablename__ = 'user'
+class User(Base):
+    __tablename__ = 'user'
 
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250), nullable=False)
-#     email = Column(String(250), nullable=False)
-#     picture = Column(String(250))
-
-
-# class Restaurant(Base):
-#     __tablename__ = 'restaurant'
-
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250), nullable=False)
-#     user_id = Column(Integer, ForeignKey('user.id'))
-#     user = relationship(User)
-
-#     @property
-#     def serialize(self):
-#         """Return object data in easily serializeable format"""
-#         return {
-#             'name': self.name,
-#             'id': self.id,
-#         }
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
 
 
-# class MenuItem(Base):
-#     __tablename__ = 'menu_item'
+class State(Base):
+    __tablename__ = 'state'
 
-#     name = Column(String(80), nullable=False)
-#     id = Column(Integer, primary_key=True)
-#     description = Column(String(250))
-#     price = Column(String(8))
-#     course = Column(String(250))
-#     restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
-#     restaurant = relationship(Restaurant)
-#     user_id = Column(Integer, ForeignKey('user.id'))
-#     user = relationship(User)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
 
-#     @property
-#     def serialize(self):
-#         """Return object data in easily serializeable format"""
-#         return {
-#             'name': self.name,
-#             'description': self.description,
-#             'id': self.id,
-#             'price': self.price,
-#             'course': self.course,
-#         }
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'name': self.name,
+            'id': self.id,
+        }
 
 
-engine = create_engine('sqlite:///restaurantmenuwithusers.db')
+class ParkType(Base):
+    __tablename__ = 'park_type'
+
+    name = Column(String(80), nullable=False)
+    id = Column(Integer, primary_key=True)
+    description = Column(String(250))
+
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'name': self.name,
+            'id': self.id,
+        }
+
+
+class Park(Base):
+    __tablename__ = 'park_name'
+
+    name = Column(String(80), nullable=False)
+    id = Column(Integer, primary_key=True)
+    description = Column(String(250))
+    photo = Column(String(250))
+    type_id = Column(Integer, ForeignKey('park_type.id'))
+    park_type = relationship(ParkType)
+    state_id = Column(Integer, ForeignKey('state.id'))
+    state = relationship(State)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'name': self.name,
+            'description': self.description,
+            'id': self.id,
+            'phoho': self.photo
+        }
+
+
+engine = create_engine('sqlite:///parks.db')
 
 
 Base.metadata.create_all(engine)
