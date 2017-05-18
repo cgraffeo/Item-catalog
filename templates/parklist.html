@@ -23,7 +23,7 @@
       <div class="col-md-3">
         <h2>National Parks</h2>
           {% for park in parks %}
-            {% if === 'National Park' %}
+            {% if park.park_type == 'National' %}
               <div class="park-items">
                 <h3>{{park.name}}</h3>
                 <p>{{park.description}}</p>
@@ -35,7 +35,7 @@
       <div class="col-md-3">
         <h2>State Parks</h2>
           {% for park in parks %}
-            {% if === 'State Park' %}
+            {% if park.park_type == 'State' %}
               <div class="park-items">
                 <h3>{{park.name}}</h3>
                 <p>{{park.description}}</p>
@@ -48,7 +48,7 @@
       <div class="col-md-3">
         <h2>County Parks</h2>
           {% for park in parks %}
-            {% if === 'County Park' %}
+            {% if park.park_type == 'County' %}
               <div class="park-items">
                 <h3>{{park.name}}</h3>
                 <p>{{park.description}}</p>
@@ -61,7 +61,7 @@
       <div class="col-md-3">
         <h2>Town Parks</h2>
           {% for park in parks %}
-            {% if === 'Town Park' %}
+            {% if park.park_type == 'Town' %}
               <div class="park-items">
                 <h3>{{park.name}}</h3>
                 <p>{{park.description}}</p>
@@ -74,7 +74,7 @@
       <div class="col-md-3">
         <h2>Dog Parks</h2>
           {% for park in parks %}
-            {% if === 'Dog Park' %}
+            {% if park.park_type == 'Dog' %}
               <div class="park-items">
                 <h3>{{park.name}}</h3>
                 <p>{{park.description}}</p>

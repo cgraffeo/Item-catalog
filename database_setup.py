@@ -30,20 +30,20 @@ class State(Base):
         }
 
 
-class ParkType(Base):
-    __tablename__ = 'park_type'
+# class ParkType(Base):
+#     __tablename__ = 'park_type'
 
-    name = Column(String(80), nullable=False)
-    id = Column(Integer, primary_key=True)
-    description = Column(String(250))
+#     name = Column(String(80), nullable=False)
+#     id = Column(Integer, primary_key=True)
+#     description = Column(String(250))
 
-    @property
-    def serialize(self):
-        """Return object data in easily serializeable format"""
-        return {
-            'name': self.name,
-            'id': self.id,
-        }
+#     @property
+#     def serialize(self):
+#         """Return object data in easily serializeable format"""
+#         return {
+#             'name': self.name,
+#             'id': self.id,
+#         }
 
 
 class Park(Base):
@@ -53,8 +53,9 @@ class Park(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
     photo = Column(String(250))
-    type_id = Column(Integer, ForeignKey('park_type.id'))
-    park_type = relationship(ParkType)
+    park_type = Column(String(250))
+    # type_id = Column(Integer, ForeignKey('park_type.id'))
+    # park_type = relationship(ParkType)
     state_id = Column(Integer, ForeignKey('state.id'))
     state = relationship(State)
     user_id = Column(Integer, ForeignKey('user.id'))
