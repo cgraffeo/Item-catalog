@@ -27,29 +27,29 @@ def showlogin():
 @app.route('/')
 @app.route('/state')
 def stateList():
-    return "This page will show a list of states"
+    states = session.query(State).order_by(asc(State.name))
+    return render_template('states.html', states=states)
 
-@app.route('/state/<int:state_id>/type')
-def typeList():
-    return "This page will show a list of types of parks"
+@app.route('/state/<int:state_id>/parks')
+def typeList(state_id):
+    states = session.query(State).filter_by(id=state_id).one()
+    parks = session.query(Park).filter_by(state_id=state_id).all()
+    parktype = session.query(Park.park_type).all()
+    return render_template('parklist.html', parks=parks, state_id=state_id, states=states, parktype=parktype)
 
-@app.route('/state/<int:state_id>/type/<int:type_id>')
-def parkList():
-    return "This page will show a list of parks of a type"
-
-@app.route('/state/<int:state_id>/type/<int:type_id>/new')
+@app.route('/<int:park_id>/new')
 def newPark():
     return "This page will allow you to create a new park"
 
-@app.route('/state/<int:state_id>/type/<int:type_id>/<int:park_id>')
+@app.route('/<int:park_id>/details')
 def parkDetail():
     return "This page will show a specific park and it's details"
 
-@app.route('/state/<int:state_id>/type/<int:type_id>/<int:park_id>/edit')
+@app.route('/<int:park_id>/edit')
 def editPark():
     return "This page will allow you to edit a specific park details"
 
-@app.route('/state/<int:state_id>/type/<int:type_id>/<int:park_id>/delete')
+@app.route('/<int:park_id>/delete')
 def deletePark():
     return "This page will allow you to delete a specific park"
 

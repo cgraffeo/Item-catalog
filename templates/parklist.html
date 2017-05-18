@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "nav.html" %}
+
+  <div class="row divider green">
+    <div class="col-md-12"></div>
+  </div>
+  <div class="row banner">
+    <div class="col-md-11 col-md-offset-1 padding-none">
+      <h1>{{ states.name }}</h1>
+    </div>
+  </div>
+  <div class="row padding-top padding-bottom">
+    <div class="col-md-1"></div>
+    <div class="col-md-11 padding-none">
+
+    </div>
+    <div class="col-md-7"></div>
+  </div>
+  {% if parks !=[] %}
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <h2>{{ parktype.name }}</h2>
+          {% for park in parks %}
+              <div class="park-items">
+                <h3>{{park.name}}</h3>
+                <p>{{park.description}}</p>
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+{% endblock %}
