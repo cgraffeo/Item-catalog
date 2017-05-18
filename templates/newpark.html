@@ -1,0 +1,44 @@
+{% extends "base.html"%}
+{% includes "nav.html" %}
+{% block content %}
+  <div>
+  <h1>Add a new Park</h1>
+    <form action="#" method="post">
+    <label for="name">Name:</label>
+    <input type="text" maxlength="100" name="name">
+    <label for="photo">Add a Photo:</label>
+    <input type="text" maxlength="100" name="photo">
+    <label for="description">Description:</label>
+    <input type="textarea" name="description">
+    <label for="type">Type of park:</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type1" value="National" {% if newPark.park_type == 'National' %}checked{%endif%}>National Park
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type2" value="State" {% if newPark.park_type == 'State' %}checked{%endif%}>State Park
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type3" value="County" {% if newPark.park_type == 'County' %}checked{%endif%}>County Park
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type4" value="Town" {%if newPark.park_type =='Town' %}checked{%endif%}>Town Park
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type5" value="Dog" {%if newPark.park_type =='Dog' %}checked{%endif%}>Dog Park
+        </label>
+      </div>
+
+    <button type="submit"> Create Park </button>
+    </form>
+  </div>
+
+{% endblock %}
