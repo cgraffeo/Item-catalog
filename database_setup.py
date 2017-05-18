@@ -47,7 +47,7 @@ class ParkType(Base):
 
 
 class Park(Base):
-    __tablename__ = 'park_name'
+    __tablename__ = 'park'
 
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
