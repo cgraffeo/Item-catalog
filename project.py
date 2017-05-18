@@ -34,24 +34,43 @@ def stateList():
 def typeList(state_id):
     states = session.query(State).filter_by(id=state_id).one()
     parks = session.query(Park).filter_by(state_id=state_id).all()
-    # parktype = session.query(Park.park_type).all()
     return render_template('parklist.html', parks=parks, state_id=state_id, states=states)
 
-@app.route('/<int:park_id>/new')
+@app.route('/parks/new', methods=['GET', 'POST'])
 def newPark():
-    return "This page will allow you to create a new park"
+    newPark = Park(name=request.form['name'], description=request.form['description'], photo=request.form['photo'], park_type=request.form['park_type'])
+    session.add(newPark)
+    session.commit()
+    return render_template('newpark.html')
 
 @app.route('/<int:park_id>/details')
-def parkDetail():
-    return "This page will show a specific park and it's details"
+def parkDetail(park_id):
+    park = session.query(Park).filter_by(id=park_id).one()
+    return render_template('parkdetail.html', park_id=park_id)
 
 @app.route('/<int:park_id>/edit')
-def editPark():
-    return "This page will allow you to edit a specific park details"
+def editPark(park_id, methods=['GET', 'POST']):
+    editPark = session.query(Park).filter_by(id=park_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editPark.name = request.form['name']
+        if request.form['description']:
+            editPark.description = request.form['description']
+        if request.form['photo']:
+            editPark.photo = request.form['photo']
+        if reuqest.form['park_type']:
+            editPark.park_type = request.form['park_type']
+        session.add(editPark)
+        session.commit()
+    return render_template('editpark.html', park_id=park_id)
 
-@app.route('/<int:park_id>/delete')
-def deletePark():
-    return "This page will allow you to delete a specific park"
+@app.route('/<int:park_id>/delete', methods=['GET', 'POST'])
+def deletePark(park_id):
+    parkToDelete = session.query(Park).filter_by(id=park_id).one()
+    if request.method == 'POST':
+        session.delete(parkToDelete)
+        session.commit()
+    return render_template('deletepark.html', park_id=park_id)
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
