@@ -33,54 +33,54 @@ session.commit()
 print "Added users..."
 
 # Add States
-State1 = State(name="Alabama")
+state1 = State(name="Alabama")
 
-session.add(State1)
+session.add(state1)
 session.commit()
 
-State2 = State(name="Arizona")
+state2 = State(name="Arizona")
 
-session.add(State2)
+session.add(state2)
 session.commit()
 
-State3 = State(name="California")
+state3 = State(name="California")
 
-session.add(State3)
+session.add(state3)
 session.commit()
 
-State4 = State(name="Colorado")
+state4 = State(name="Colorado")
 
-session.add(State4)
+session.add(state4)
 session.commit()
 
-State5 = State(name="Delaware")
+state5 = State(name="Delaware")
 
-session.add(State5)
+session.add(state5)
 session.commit()
 
-State6 = State(name="Florida")
+state6 = State(name="Florida")
 
-session.add(State6)
+session.add(state6)
 session.commit()
 
-State7 = State(name="Louisiana")
+state7 = State(name="Louisiana")
 
-session.add(State7)
+session.add(state7)
 session.commit()
 
-State8 = State(name="New York")
+state8 = State(name="New York")
 
-session.add(State8)
+session.add(state8)
 session.commit()
 
-State9 = State(name="Wyoming")
+state9 = State(name="Wyoming")
 
-session.add(State9)
+session.add(state9)
 session.commit()
 
-State10 = State(name="Texas")
+state10 = State(name="Texas")
 
-session.add(State10)
+session.add(state10)
 session.commit()
 
 print "Added states..."
@@ -91,7 +91,7 @@ parkType1 = ParkType(name="National Park", description="A scenic or historically
 session.add(parkType1)
 session.commit()
 
-parkType2 = ParkType(name="State Park", description="State parks are parks or other protected areas managed at the sub-national level within those nations which use "state" as a political subdivision. State parks are typically established by a state to preserve a location on account of its natural beauty, historic interest, or recreational potential.")
+parkType2 = ParkType(name="State Park", description="State parks are parks or other protected areas managed at the sub-national level within those nations which use 'state' as a political subdivision. State parks are typically established by a state to preserve a location on account of its natural beauty, historic interest, or recreational potential.")
 
 session.add(parkType2)
 session.commit()
