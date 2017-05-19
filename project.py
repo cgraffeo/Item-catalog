@@ -38,10 +38,13 @@ def typeList(state_id):
 
 @app.route('/parks/new', methods=['GET', 'POST'])
 def newPark():
-    newPark = Park(name=request.form['name'], description=request.form['description'], photo=request.form['photo'], park_type=request.form['park_type'])
-    session.add(newPark)
-    session.commit()
-    return render_template('newpark.html')
+    if request.method == 'POST':
+        addPark = Park(name=request.form['name'], description=request.form['description'], photo=request.form['photo'], park_type=request.form['park_type'], state_id=request.form['state_id'])
+        session.add(addPark)
+        session.commit()
+        return redirect('/')
+    else:
+        return render_template('newpark.html')
 
 @app.route('/<int:park_id>/details')
 def parkDetail(park_id):
