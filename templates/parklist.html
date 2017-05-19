@@ -25,7 +25,7 @@
         {% for park in parks %}
           {% if park.park_type == 'National' %}
             <div class="park-items">
-              <a href = "{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+              <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
               <p>{{park.description}}</p>
             </div>
               {% endif %}
@@ -36,7 +36,7 @@
           {% for park in parks %}
             {% if park.park_type == 'State' %}
               <div class="park-items">
-                <a src="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
@@ -47,7 +47,7 @@
           {% for park in parks %}
             {% if park.park_type == 'County' %}
               <div class="park-items">
-                <a src="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
@@ -58,7 +58,7 @@
           {% for park in parks %}
             {% if park.park_type == 'Town' %}
               <div class="park-items">
-                <a src="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
@@ -69,7 +69,7 @@
           {% for park in parks %}
             {% if park.park_type == 'Dog' %}
               <div class="park-items">
-                <a src="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}

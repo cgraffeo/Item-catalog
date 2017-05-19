@@ -4,5 +4,11 @@
 <h1>{{ park.name }}</h1>
 <h2>{{ park.state_id}}
 <p>{{ park.description }}</p>
-<img src ="{{ park.photo }}">
+<img src="{{ park.photo }}">
+<a href="{{url_for('deletePark', park_id=park_id)}}">
+  <button>Delete Park</button>
+</a>
+<a href="{{url_for('editPark', park_id=park_id)}}">
+  <button>Edit Park</button>
+</a>
 {% endblock %}
