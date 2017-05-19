@@ -42,7 +42,9 @@ def newPark():
         addPark = Park(name=request.form['name'], description=request.form['description'], photo=request.form['photo'], park_type=request.form['park_type'], state_id=request.form['state_id'])
         session.add(addPark)
         session.commit()
-        return redirect('/')
+        description = request.form['description']
+        park = session.query(Park).filter_by(description=description).one()
+        return redirect(url_for('parkDetail', park_id=park.id))
     else:
         return render_template('newpark.html')
 
@@ -67,7 +69,7 @@ def editPark(park_id):
             editPark.state_id = request.form['state_id']
         session.add(editPark)
         session.commit()
-        return redirect(url_for('parkDetail', park_id=park_id))
+        return redirect(url_for('parkDetail', park_id=park_id, editPark=editPark))
     else:
         return render_template('editpark.html', editPark=editPark, park_id=park_id)
 

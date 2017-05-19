@@ -9,78 +9,83 @@
     <label for="photo">Add a Photo:</label>
     <input type="text" maxlength="100" name="photo" value="{{editPark.photo}}">
     <select name="state_id">
-      <option value='1'>Alabama</option>
-      <option value='2'>Alaska</option>
-      <option value='3'>Arizona</option>
-      <option value='4'>Arkansas</option>
-      <option value='5'>California</option>
-      <option value='6'>Colorado</option>
-      <option value='7'>Connecticut</option>
-      <option value='8'>Delaware</option>
-      <option value='9'>Florida</option>
-      <option value='10'>Georgia</option>
-      <option value='11'>Hawaii</option>
-      <option value='12'>Idaho</option>
-      <option value='13'>Illinois</option>
-      <option value='14'>Indiana</option>
-      <option value='15'>Iowa</option>
-      <option value='16'>Kansas</option>
-      <option value='17'>Kentucky</option>
-      <option value='18'>Louisiana</option>
-      <option value='19'>Maine</option>
-      <option value='20'>Maryland</option>
-      <option value='21'>Massachusetts</option>
-      <option value='22'>Michigan</option>
-      <option value='23'>Minnesota</option>
-      <option value='24'>Mississippi</option>
-      <option value='25'>Missouri</option>
-      <option value='26'>Montana</option>
-      <option value='27'>Nebraska</option>
-      <option value='28'>Nevada</option>
-      <option value='29'>New Hampshire</option>
-      <option value='30'>New Jersey</option>
-      <option value='31'>New Mexico</option>
-      <option value='32'>New York</option>
-      <option value='33'>North Carolina</option>
-      <option value='34'>North Dakota</option>
-      <option value='35'>Ohio</option>
-      <option value='36'>Oklahoma</option>
-      <option value='37'>Oregon</option>
-      <option value='38'>Pennsylvania</option>
-      <option value='39'>Rhode Island</option>
-      <option value='40'>South Carolina</option>
-      <option value='41'>South Dakota</option>
-      <option value='42'>Tennessee</option>
-      <option value='43'>Texas</option>
-      <option value='44'>Utah</option>
-      <option value='45'>Vermont</option>
-      <option value='46'>Virginia</option>
-      <option value='47'>Washington</option>
-      <option value='48'>West Virginia</option>
-      <option value='49'>Wisconsin</option>
-      <option value='50'>Wyoming</option>
+      <option value='1'{% if editPark.state_id == 1 %}selected{%endif%}>Alabama</option>
+      <option value='2'{% if editPark.state_id == 2 %}selected{%endif%}>Alaska</option>
+      <option value='3'{% if editPark.state_id == 3 %}selected{%endif%}>Arizona</option>
+      <option value='4'{% if editPark.state_id == 4 %}selected{%endif%}>Arkansas</option>
+      <option value='5'{% if editPark.state_id == 5 %}selected{%endif%}>California</option>
+      <option value='6'{% if editPark.state_id == 6 %}selected{%endif%}>Colorado</option>
+      <option value='7'{% if editPark.state_id == 7 %}selected{%endif%}>Connecticut</option>
+      <option value='8'{% if editPark.state_id == 8 %}selected{%endif%}>Delaware</option>
+      <option value='9'{% if editPark.state_id == 9 %}selected{%endif%}>Florida</option>
+      <option value='10'{% if editPark.state_id == 10 %}selected{%endif%}>Georgia</option>
+      <option value='11'{% if editPark.state_id == 11 %}selected{%endif%}>Hawaii</option>
+      <option value='12'{% if editPark.state_id == 12 %}selected{%endif%}>Idaho</option>
+      <option value='13'{% if editPark.state_id == 13 %}selected{%endif%}>Illinois</option>
+      <option value='14'{% if editPark.state_id == 14 %}selected{%endif%}>Indiana</option>
+      <option value='15'{% if editPark.state_id == 15 %}selected{%endif%}>Iowa</option>
+      <option value='16'{% if editPark.state_id == 16 %}selected{%endif%}>Kansas</option>
+      <option value='17'{% if editPark.state_id == 17 %}selected{%endif%}>Kentucky</option>
+      <option value='18'{% if editPark.state_id == 18 %}selected{%endif%}>Louisiana</option>
+      <option value='19'{% if editPark.state_id == 19 %}selected{%endif%}>Maine</option>
+      <option value='20'{% if editPark.state_id == 20 %}selected{%endif%}>Maryland</option>
+      <option value='21'{% if editPark.state_id == 21 %}selected{%endif%}>Massachusetts</option>
+      <option value='22'{% if editPark.state_id == 22 %}selected{%endif%}>Michigan</option>
+      <option value='23'{% if editPark.state_id == 23 %}selected{%endif%}>Minnesota</option>
+      <option value='24'{% if editPark.state_id == 24 %}selected{%endif%}>Mississippi</option>
+      <option value='25'{% if editPark.state_id == 25 %}selected{%endif%}>Missouri</option>
+      <option value='26'{% if editPark.state_id == 26 %}selected{%endif%}>Montana</option>
+      <option value='27'{% if editPark.state_id == 27 %}selected{%endif%}>Nebraska</option>
+      <option value='28'{% if editPark.state_id == 28 %}selected{%endif%}>Nevada</option>
+      <option value='29'{% if editPark.state_id == 29 %}selected{%endif%}>New Hampshire</option>
+      <option value='30'{% if editPark.state_id == 30 %}selected{%endif%}>New Jersey</option>
+      <option value='31'{% if editPark.state_id == 31 %}selected{%endif%}>New Mexico</option>
+      <option value='32'{% if editPark.state_id == 32 %}selected{%endif%}>New York</option>
+      <option value='33'{% if editPark.state_id == 33 %}selected{%endif%}>North Carolina</option>
+      <option value='34'{% if editPark.state_id == 34 %}selected{%endif%}>North Dakota</option>
+      <option value='35'{% if editPark.state_id == 35 %}selected{%endif%}>Ohio</option>
+      <option value='36'{% if editPark.state_id == 36 %}selected{%endif%}>Oklahoma</option>
+      <option value='37'{% if editPark.state_id == 37 %}selected{%endif%}>Oregon</option>
+      <option value='38'{% if editPark.state_id == 38 %}selected{%endif%}>Pennsylvania</option>
+      <option value='39'{% if editPark.state_id == 39 %}selected{%endif%}>Rhode Island</option>
+      <option value='40'{% if editPark.state_id == 40 %}selected{%endif%}>South Carolina</option>
+      <option value='41'{% if editPark.state_id == 41 %}selected{%endif%}>South Dakota</option>
+      <option value='42'{% if editPark.state_id == 42 %}selected{%endif%}>Tennessee</option>
+      <option value='43'{% if editPark.state_id == 43 %}selected{%endif%}>Texas</option>
+      <option value='44'{% if editPark.state_id == 44 %}selected{%endif%}>Utah</option>
+      <option value='45'{% if editPark.state_id == 45 %}selected{%endif%}>Vermont</option>
+      <option value='46'{% if editPark.state_id == 46 %}selected{%endif%}>Virginia</option>
+      <option value='47'{% if editPark.state_id == 47 %}selected{%endif%}>Washington</option>
+      <option value='48'{% if editPark.state_id == 48 %}selected{%endif%}>West Virginia</option>
+      <option value='49'{% if editPark.state_id == 49 %}selected{%endif%}>Wisconsin</option>
+      <option value='50'{% if editPark.state_id == 50 %}selected{%endif%}>Wyoming</option>
     </select>
     <label for="description">Description:</label>
     <textarea type="text" name="description" value="{{editPark.description}}">{{editPark.description}}</textarea>
     <label for="type">Type of park:</label>
       <div class="radio">
         <label>
-          <input type="radio" name="park_type" id="park_type2" value="State"> State Park
+          <input type="radio" name="park_type" id="park_types" value="National" {% if editPark.park_type == 'National'%}checked{%endif%}> National Park
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="park_type" id="park_type3" value="County"> County Park
+          <input type="radio" name="park_type" id="park_type2" value="State" {% if editPark.park_type == 'State'%}checked{%endif%}> State Park
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="park_type" id="park_type4" value="Town"> Town Park
+          <input type="radio" name="park_type" id="park_type3" value="County" {% if editPark.park_type == 'County'%}checked{%endif%}> County Park
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="park_type" id="park_type5" value="Dog"> Dog Park
+          <input type="radio" name="park_type" id="park_type4" value="Town" {% if editPark.park_type == 'Town'%}checked{%endif%}> Town Park
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="park_type" id="park_type5" value="Dog" {% if editPark.park_type == 'Dog'%}checked{%endif%}> Dog Park
         </label>
       </div>
 
