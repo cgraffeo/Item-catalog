@@ -1,4 +1,11 @@
 {% extends "base.html"%}
-{% includes "nav.html" %}
+{% include "nav.html" %}
 {% block content %}
+<h1>Are you sure you want to delete {{park.name}}?</h1>
+<form action="#" method="post">
+<button type="submit"> Delete </button>
+</form>
+<a href="{{url_for('parkDetail', park_id=park_id)}}">
+  <button>Cancel</button>
+</a>
 {% endblock %}

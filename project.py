@@ -49,10 +49,10 @@ def newPark():
 @app.route('/<int:park_id>/details')
 def parkDetail(park_id):
     park = session.query(Park).filter_by(id=park_id).one()
-    return render_template('parkdetail.html', park_id=park_id)
+    return render_template('parkdetail.html', park=park, park_id=park_id)
 
-@app.route('/<int:park_id>/edit')
-def editPark(park_id, methods=['GET', 'POST']):
+@app.route('/<int:park_id>/edit', methods=['GET', 'POST'])
+def editPark(park_id):
     editPark = session.query(Park).filter_by(id=park_id).one()
     if request.method == 'POST':
         if request.form['name']:
@@ -61,11 +61,15 @@ def editPark(park_id, methods=['GET', 'POST']):
             editPark.description = request.form['description']
         if request.form['photo']:
             editPark.photo = request.form['photo']
-        if reuqest.form['park_type']:
+        if request.form['park_type']:
             editPark.park_type = request.form['park_type']
+        if request.form['state_id']:
+            editPark.state_id = request.form['state_id']
         session.add(editPark)
         session.commit()
-    return render_template('editpark.html', park_id=park_id)
+        return redirect(url_for('parkDetail', park_id=park_id))
+    else:
+        return render_template('editpark.html', editPark=editPark, park_id=park_id)
 
 @app.route('/<int:park_id>/delete', methods=['GET', 'POST'])
 def deletePark(park_id):
@@ -73,7 +77,9 @@ def deletePark(park_id):
     if request.method == 'POST':
         session.delete(parkToDelete)
         session.commit()
-    return render_template('deletepark.html', park_id=park_id)
+        return redirect('/')
+    else:
+        return render_template('deletepark.html', park_id=park_id, park=parkToDelete)
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
