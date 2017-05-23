@@ -225,6 +225,7 @@ def newPark():
                        user_id=login_session['user_id'])
         session.add(addPark)
         session.commit()
+        flash('New park %s has been Successfully Created' % (addPark.name))
         description = request.form['description']
         park = session.query(Park).filter_by(description=description).one()
         return redirect(url_for('parkDetail', park_id=park.id))
@@ -242,7 +243,8 @@ def editPark(park_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editPark.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this park.');}</script><body onload='myFunction()''>"
+        flash('You are not authorized to edit %s' % (editPark.name))
+        return redirect(url_for('parkDetail', park_id=park_id))
     if request.method == 'POST':
         if request.form['name']:
             editPark.name = request.form['name']
@@ -256,6 +258,7 @@ def editPark(park_id):
             editPark.state_id = request.form['state_id']
         session.add(editPark)
         session.commit()
+        flash('Park %s has been successfully edited' % (editPark.name))
         return redirect(url_for('parkDetail', park_id=park_id, editPark=editPark))
     else:
         return render_template('editpark.html', editPark=editPark, park_id=park_id)
@@ -266,10 +269,12 @@ def deletePark(park_id):
     if 'username' not in login_session:
         return redirect('/login')
     if parkToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this park.');}</script><body onload='myFunction()''>"
+        flash('You are not authorized to delete %s' % (parkToDelete.name))
+        return redirect(url_for('parkDetail', park_id=park_id))
     if request.method == 'POST':
         session.delete(parkToDelete)
         session.commit()
+        flash('Park %s has been successfully removed' % (parkToDelete.name))
         return redirect('/')
     else:
         return render_template('deletepark.html', park_id=park_id, park=parkToDelete)
