@@ -34,7 +34,8 @@ def stateList():
 def typeList(state_id):
     states = session.query(State).filter_by(id=state_id).one()
     parks = session.query(Park).filter_by(state_id=state_id).all()
-    return render_template('parklist.html', parks=parks, state_id=state_id, states=states)
+    return render_template('parklist.html', parks=parks, state_id=state_id,
+                           states=states)
 
 @app.route('/parks/new', methods=['GET', 'POST'])
 def newPark():
