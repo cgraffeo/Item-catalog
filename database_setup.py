@@ -68,7 +68,8 @@ class Park(Base):
             'name': self.name,
             'description': self.description,
             'id': self.id,
-            'phoho': self.photo
+            'phoho': self.photo,
+            'park_type': self.park_type
         }
 
 

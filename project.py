@@ -116,6 +116,29 @@ def gconnect():
     print "done!"
     return output
 
+# User Helper Functions
+
+
+def createUser(login_session):
+    newUser = User(name=login_session['username'], email=login_session[
+                   'email'], picture=login_session['picture'])
+    session.add(newUser)
+    session.commit()
+    user = session.query(User).filter_by(email=login_session['email']).one()
+    return user.id
+
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+
+def getUserID(email):
+    try:
+        user = session.query(User).filter_by(email=email).one()
+        return user.id
+    except:
+        return None
     # DISCONNECT - Revoke a current user's token and reset their login_session
 
 
@@ -149,6 +172,24 @@ def gdisconnect():
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
+
+# JSON APIs to view Park Information
+@app.route('/state/<int:state_id>/parks/JSON')
+def parkListJSON(state_id):
+    states = session.query(State).filter_by(id=state_id).one()
+    parks = session.query(Park).filter_by(state_id=state_id).all()
+    return jsonify(Parks=[park.serialize for park in parks])
+
+@app.route('/<int:park_id>/details/JSON')
+def parkJSON(park_id):
+    parks = session.query(Park).filter_by(id=park_id).one()
+    return jsonify(Park=parks.serialize)
+
+
+@app.route('/state/JSON')
+def statesJSON():
+    states = session.query(State).all()
+    return jsonify(states=[state.serialize for state in states])
 
 @app.route('/')
 @app.route('/state')
