@@ -82,9 +82,9 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    stored_access_token = login_session.get('access_token')
+    stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
-    if stored_access_token is not None and gplus_id == stored_gplus_id:
+    if stored_credentials is not None and gplus_id == stored_gplus_id:
         response = make_response(json.dumps('Current user is already connected.'),
                                  200)
         response.headers['Content-Type'] = 'application/json'
@@ -104,6 +104,14 @@ def gconnect():
     login_session['username'] = data['name']
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
+    # ADD PROVIDER TO LOGIN SESSION
+    login_session['provider'] = 'google'
+
+    # see if user exists, if it doesn't make a new one
+    user_id = getUserID(data["email"])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
 
     output = ''
     output += '<h1>Welcome, '
@@ -206,8 +214,15 @@ def typeList(state_id):
 
 @app.route('/parks/new', methods=['GET', 'POST'])
 def newPark():
+    if 'username' not in login_session:
+        return redirect('/login')
     if request.method == 'POST':
-        addPark = Park(name=request.form['name'], description=request.form['description'], photo=request.form['photo'], park_type=request.form['park_type'], state_id=request.form['state_id'])
+        addPark = Park(name=request.form['name'],
+                       description=request.form['description'],
+                       photo=request.form['photo'],
+                       park_type=request.form['park_type'],
+                       state_id=request.form['state_id'],
+                       user_id=login_session['user_id'])
         session.add(addPark)
         session.commit()
         description = request.form['description']
@@ -224,6 +239,10 @@ def parkDetail(park_id):
 @app.route('/<int:park_id>/edit', methods=['GET', 'POST'])
 def editPark(park_id):
     editPark = session.query(Park).filter_by(id=park_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if editPark.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to edit this park.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editPark.name = request.form['name']
@@ -244,6 +263,10 @@ def editPark(park_id):
 @app.route('/<int:park_id>/delete', methods=['GET', 'POST'])
 def deletePark(park_id):
     parkToDelete = session.query(Park).filter_by(id=park_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if parkToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to delete this park.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(parkToDelete)
         session.commit()

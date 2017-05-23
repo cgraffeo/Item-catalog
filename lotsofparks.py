@@ -20,17 +20,17 @@ session = DBSession()
 
 
 # Create dummy users
-User1 = User(name="Bob Dole", email="bobdole@bobdole.com",
-             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
-session.add(User1)
-session.commit()
+# User1 = User(name="Bob Dole", email="bobdole@bobdole.com",
+#              picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+# session.add(User1)
+# session.commit()
 
-User2 = User(name="Bill Clinton", email="billisgreat@scandle.com",
-             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
-session.add(User2)
-session.commit()
+# User2 = User(name="Bill Clinton", email="billisgreat@scandle.com",
+#              picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+# session.add(User2)
+# session.commit()
 
-print "Added users..."
+# print "Added users..."
 
 
 # Add States
