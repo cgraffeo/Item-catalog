@@ -1,16 +1,7 @@
 {% extends "base.html" %}
 {% include "nav.html" %}
 {% block content %}
-  <div class="row divider blue">
-    <div class="col-md-12"></div>
-  </div>
-  <div class="row banner main">
-    <div class="col-md-1"></div>
-    <div class="col-md-11 padding-none">
-      <h1>States</h1>
-    </div>
-  </div>
-
+<h1>States</h1>
 <div class = 'flash'>
           {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -24,23 +15,12 @@
     {% endwith %}
 
 </div>
-
-  <div class="row padding-top padding-bottom">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 padding-none">
-
-    </div>
-    <div class="col-md-1"></div>
-  </div>
-  {% for state in states %}
-    <a href = "{{url_for('typeList', state_id=state.id)}}">
-      <div class="row">
-        <div class="col-md-1"></div>
-          <div class="col-md-10 restaurant-list">
-            <h3>{{state.name}}</h3>
-          </div>
-        <div class="col-md-1"></div>
-      </div>
-    </a>
-  {% endfor %}
+<form action="#" method="POST">
+<select name="state_id">
+    {% for state in states %}
+      <option value='{{state.id}}'>{{state.name}}</option>
+    {% endfor %}
+</select>
+    <button type="submit">See parks!</button>
+  </form>
 {% endblock %}

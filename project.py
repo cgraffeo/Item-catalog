@@ -199,11 +199,16 @@ def statesJSON():
     states = session.query(State).all()
     return jsonify(states=[state.serialize for state in states])
 
-@app.route('/')
-@app.route('/state')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/state', methods=['GET', 'POST'])
 def stateList():
     states = session.query(State).order_by(asc(State.name))
-    return render_template('states.html', states=states)
+    stateid = session.query(State).filter_by(state_id=state_id).all()
+    if request.method == 'POST':
+        return redirect(url_for('typeList', stateid=stateid))
+    else:
+        return render_template('states.html', states=states)
+
 
 @app.route('/state/<int:state_id>/parks')
 def typeList(state_id):
