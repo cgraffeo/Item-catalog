@@ -150,7 +150,7 @@ def getUserID(email):
     # DISCONNECT - Revoke a current user's token and reset their login_session
 
 
-@app.route('/gdisconnect')
+@app.route('/gdisconnect/')
 def gdisconnect():
     access_token = login_session['access_token']
     print 'In gdisconnect access token is %s', access_token
@@ -182,42 +182,43 @@ def gdisconnect():
         return response
 
 # JSON APIs to view Park Information
-@app.route('/state/<int:state_id>/parks/JSON')
+@app.route('/state/<int:state_id>/parks/JSON/')
 def parkListJSON(state_id):
     states = session.query(State).filter_by(id=state_id).one()
     parks = session.query(Park).filter_by(state_id=state_id).all()
     return jsonify(Parks=[park.serialize for park in parks])
 
-@app.route('/<int:park_id>/details/JSON')
+@app.route('/<int:park_id>/details/JSON/')
 def parkJSON(park_id):
     parks = session.query(Park).filter_by(id=park_id).one()
     return jsonify(Park=parks.serialize)
 
 
-@app.route('/state/JSON')
+@app.route('/state/JSON/')
 def statesJSON():
     states = session.query(State).all()
     return jsonify(states=[state.serialize for state in states])
 
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/state', methods=['GET', 'POST'])
+@app.route('/state/', methods=['GET', 'POST'])
 def stateList():
     states = session.query(State).order_by(asc(State.name))
-    stateid = session.query(State).filter_by(state_id=state_id).all()
     if request.method == 'POST':
-        return redirect(url_for('typeList', stateid=stateid))
+        stateName = request.form['state_name']
+        state = session.query(State).filter_by(name=stateName).one()
+        return redirect(url_for('typeList', state_id=state.id))
     else:
         return render_template('states.html', states=states)
 
 
-@app.route('/state/<int:state_id>/parks')
+@app.route('/state/<int:state_id>/parks/')
 def typeList(state_id):
     states = session.query(State).filter_by(id=state_id).one()
     parks = session.query(Park).filter_by(state_id=state_id).all()
     return render_template('parklist.html', parks=parks, state_id=state_id,
                            states=states)
 
-@app.route('/parks/new', methods=['GET', 'POST'])
+@app.route('/parks/new/', methods=['GET', 'POST'])
 def newPark():
     if 'username' not in login_session:
         return redirect('/login')
@@ -237,12 +238,12 @@ def newPark():
     else:
         return render_template('newpark.html')
 
-@app.route('/<int:park_id>/details')
+@app.route('/<int:park_id>/details/')
 def parkDetail(park_id):
     park = session.query(Park).filter_by(id=park_id).one()
     return render_template('parkdetail.html', park=park, park_id=park_id)
 
-@app.route('/<int:park_id>/edit', methods=['GET', 'POST'])
+@app.route('/<int:park_id>/edit/', methods=['GET', 'POST'])
 def editPark(park_id):
     editPark = session.query(Park).filter_by(id=park_id).one()
     if 'username' not in login_session:
@@ -268,7 +269,7 @@ def editPark(park_id):
     else:
         return render_template('editpark.html', editPark=editPark, park_id=park_id)
 
-@app.route('/<int:park_id>/delete', methods=['GET', 'POST'])
+@app.route('/<int:park_id>/delete/', methods=['GET', 'POST'])
 def deletePark(park_id):
     parkToDelete = session.query(Park).filter_by(id=park_id).one()
     if 'username' not in login_session:

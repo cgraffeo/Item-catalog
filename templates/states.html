@@ -15,10 +15,10 @@
     {% endwith %}
 
 </div>
-<form action="#" method="POST">
-<select name="state_id">
+<form method="POST">
+<select name="state_name" id="state_name">
     {% for state in states %}
-      <option value='{{state.id}}'>{{state.name}}</option>
+      <option name="state_name" value='{{state.name}}'>{{state.name}}</option>
     {% endfor %}
 </select>
     <button type="submit">See parks!</button>
