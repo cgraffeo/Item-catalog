@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+from flask import Flask, render_template, request, redirect, jsonify, url_for
+from flask import flash
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, State, Park, User
@@ -85,7 +86,8 @@ def gconnect():
     stored_credentials = login_session.get('credentials')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
+        response = make_response(json.dumps
+                                 ('Current user is already connected.'),
                                  200)
         response.headers['Content-Type'] = 'application/json'
         return response
@@ -117,9 +119,9 @@ def gconnect():
     output += '<h1>Welcome, '
     output += login_session['username']
     output += '!</h1>'
-    output += '<img src="'
+    output += '<img class="login-pic" src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += '"> '
     flash("You are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -158,10 +160,12 @@ def gdisconnect():
     print login_session['username']
     if access_token is None:
         print 'Access Token is None'
-        response = make_response(json.dumps('Current user not connected.'), 401)
+        response = make_response(json.dumps
+                                 ('Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
+    url = ('https://accounts.google.com/o/oauth2/revoke?token=%s'
+           % login_session['access_token'])
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
     print 'result is '
@@ -177,9 +181,12 @@ def gdisconnect():
         return redirect(url_for('stateList'))
     else:
 
-        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response = make_response(json.dumps
+                                 ('Failed to revoke token for given user.',
+                                  400))
         response.headers['Content-Type'] = 'application/json'
         return response
+
 
 # JSON APIs to view Park Information
 @app.route('/state/<int:state_id>/parks/JSON/')
@@ -187,6 +194,7 @@ def parkListJSON(state_id):
     states = session.query(State).filter_by(id=state_id).one()
     parks = session.query(Park).filter_by(state_id=state_id).all()
     return jsonify(Parks=[park.serialize for park in parks])
+
 
 @app.route('/<int:park_id>/details/JSON/')
 def parkJSON(park_id):
@@ -199,6 +207,8 @@ def statesJSON():
     states = session.query(State).all()
     return jsonify(states=[state.serialize for state in states])
 
+
+# Creating routing and general functionality
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/state/', methods=['GET', 'POST'])
 def stateList():
@@ -211,6 +221,7 @@ def stateList():
         return render_template('states.html', states=states)
 
 
+# Show list of parks by state
 @app.route('/state/<int:state_id>/parks/')
 def typeList(state_id):
     states = session.query(State).filter_by(id=state_id).one()
@@ -218,6 +229,8 @@ def typeList(state_id):
     return render_template('parklist.html', parks=parks, state_id=state_id,
                            states=states)
 
+
+# Create a new park within a state
 @app.route('/parks/new/', methods=['GET', 'POST'])
 def newPark():
     if 'username' not in login_session:
@@ -238,11 +251,15 @@ def newPark():
     else:
         return render_template('newpark.html')
 
+
+# View a specic park's details
 @app.route('/<int:park_id>/details/')
 def parkDetail(park_id):
     park = session.query(Park).filter_by(id=park_id).one()
     return render_template('parkdetail.html', park=park, park_id=park_id)
 
+
+# Edit a specific park by ID, if you created it
 @app.route('/<int:park_id>/edit/', methods=['GET', 'POST'])
 def editPark(park_id):
     editPark = session.query(Park).filter_by(id=park_id).one()
@@ -265,10 +282,14 @@ def editPark(park_id):
         session.add(editPark)
         session.commit()
         flash('Park %s has been successfully edited' % (editPark.name))
-        return redirect(url_for('parkDetail', park_id=park_id, editPark=editPark))
+        return redirect(url_for('parkDetail', park_id=park_id,
+                                editPark=editPark))
     else:
-        return render_template('editpark.html', editPark=editPark, park_id=park_id)
+        return render_template('editpark.html', editPark=editPark,
+                               park_id=park_id)
 
+
+# Delete a specific park by ID, if you created it
 @app.route('/<int:park_id>/delete/', methods=['GET', 'POST'])
 def deletePark(park_id):
     parkToDelete = session.query(Park).filter_by(id=park_id).one()
@@ -283,7 +304,8 @@ def deletePark(park_id):
         flash('Park %s has been successfully removed' % (parkToDelete.name))
         return redirect('/')
     else:
-        return render_template('deletepark.html', park_id=park_id, park=parkToDelete)
+        return render_template('deletepark.html', park_id=park_id,
+                               park=parkToDelete)
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'

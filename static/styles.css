@@ -195,3 +195,9 @@ a:hover{
   background-repeat: no-repeat;
   background-size:100%;
 }
+
+.login-pic{
+  border-radius: 50px;
+  width: 20%;
+  height:20%;
+}
