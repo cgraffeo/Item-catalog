@@ -1,0 +1,197 @@
+/*General Styling*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  /*background: #fafafa;*/
+}
+
+h1{
+  color: #000000;
+  opacity: .87;
+}
+
+.title-center{
+  text-align: center;
+}
+
+button{
+  border-radius: 0;
+  box-shadow: 1px 2px 10px -2px rgba(97,96,97,1);
+  color: #455a64;
+  border: 0;
+  background: #ffffff;
+  height: 3em;
+  width: 8em;
+  font-weight: 400;
+}
+button:hover{
+  color: #ffffff;
+  background: #455A64;
+}
+select{
+  border-radius: 0;
+  box-shadow: 0px 4px 10px -4px rgba(97,96,97,1);
+  color: #000000;
+  opacity: .65;
+  border: 0;
+  background: #ffffff;
+  font-weight: 400;
+}
+
+a{
+  color: #455a64 !important;
+  font-weight: 400;
+}
+
+a:hover{
+  color: #263238 !important;
+}
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.8em;
+  background: #f5f5f5;
+  /*margin-bottom: -20px;*/
+  /*box-shadow: 4px 3px 22px 0px rgba(0,0,0,1);*/
+}
+
+.card{
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 30%;
+  padding: 2%;
+  background: #ffffff;
+  box-shadow: 6px 7px 22px 0px rgba(0,0,0,1);
+}
+
+.cancel{
+  margin-left: 20px;
+}
+/*Styling for states*/
+
+.homepage-container{
+  height: 97.4%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://images.unsplash.com/photo-1444986744613-454c6c6d9490?dpr=1&auto=format&fit=crop&w=1500&h=1060&q=80&cs=tinysrgb&crop=&bg=);
+  background-repeat: no-repeat;
+  background-size:100%;
+  box-shadow: inset 4px -3px 22px 0px rgba(0,0,0,1);
+  /*background-position-y: 83%;*/
+}
+
+.state-select{
+  width: 59%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/*Styling for park-list*/
+.other-pages-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*justify-content: space-around;*/
+  background: #fafafa;
+  box-shadow: inset 1px 4px 13px -4px rgba(97,96,97,1);
+  /*background-position-y: 83%;*/
+  background-image: url(http://i.imgur.com/Noo9SYf.jpg);
+  background-repeat: no-repeat;
+  background-size:100%;
+}
+.park-add{
+  width: 100%;
+}
+.add-btn{
+  margin-top: 2%;
+}
+.park-container{
+  display: flex;
+}
+
+.park-types{
+  width: 45%;
+}
+
+.park-items{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2%;
+  background: #ffffff;
+  box-shadow: 1px 7px 19px -2px rgba(97,96,97,1);
+}
+
+/*Detail page specific*/
+
+.photo-background{
+  position: fixed;
+  z-index: -999;
+}
+.detail-holder{
+  display: flex;
+  align-items: flex-end;
+  height: 97.4%
+}
+.park-details{
+  /*z-index: 999;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1%;
+  background: #ffffff;
+  box-shadow: 1px 7px 19px -2px rgba(97,96,97,1);
+  opacity: .85;
+}
+.detail-photo{
+  width: 100%;
+}
+
+/*form styling*/
+.form-style{
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+  justify-content: space-around;
+  width: 40%;
+  height: 87%;
+  padding: 1%;
+  background: #ffffff;
+  box-shadow: 1px 7px 19px -2px rgba(97,96,97,1);
+}
+.signin-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2%;
+  background: #ffffff;
+  box-shadow: 1px 7px 19px -2px rgba(97,96,97,1);
+  opacity: .85;
+}
+.signin-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: #fafafa;
+  box-shadow: inset 1px 4px 13px -4px rgba(97,96,97,1);
+  /*background-position-y: 83%;*/
+  background-image: url(http://i.imgur.com/Noo9SYf.jpg);
+  background-repeat: no-repeat;
+  background-size:100%;
+}

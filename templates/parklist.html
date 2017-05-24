@@ -1,11 +1,8 @@
 {% extends "base.html" %}
-{% block content %}
 {% include "nav.html" %}
-
+{% block content %}
+<div class="other-pages-container">
       <h1>{{ states.name }}</h1>
-      <a href="{{url_for('newPark')}}">
-        <button>Create New Park</button>
-      </a>
   <div class = 'flash'>
           {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -23,59 +20,65 @@
   {% if parks !=[] %}
   <div class="park-container">
     <div class="park-types">
-      <h2>National Parks</h2>
+      <h2 class="title-center">National Parks</h2>
         {% for park in parks %}
           {% if park.park_type == 'National' %}
             <div class="park-items">
-              <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+              <a href="{{url_for('parkDetail', park_id=park.id)}}"><h3>{{park.name}}</h3></a>
               <p>{{park.description}}</p>
             </div>
               {% endif %}
           {% endfor %}
     </div>
     <div class="park-types">
-      <h2>State Parks</h2>
+      <h2 class="title-center">State Parks</h2>
           {% for park in parks %}
             {% if park.park_type == 'State' %}
               <div class="park-items">
-                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}"><h3>{{park.name}}</h3></a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
           {% endfor %}
     </div>
-    <div class="cpark-types">
-        <h2>County Parks</h2>
+    <div class="park-types">
+        <h2 class="title-center">County Parks</h2>
           {% for park in parks %}
             {% if park.park_type == 'County' %}
               <div class="park-items">
-                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}"><h3>{{park.name}}</h3></a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
           {% endfor %}
       </div>
       <div class="park-types">
-        <h2>Town Parks</h2>
+        <h2 class="title-center">Town Parks</h2>
           {% for park in parks %}
             {% if park.park_type == 'Town' %}
               <div class="park-items">
-                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}"><h3>{{park.name}}</h3></a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
           {% endfor %}
       </div>
       <div class="park-types">
-        <h2>Dog Parks</h2>
+        <h2 class="title-center">Dog Parks</h2>
           {% for park in parks %}
             {% if park.park_type == 'Dog' %}
               <div class="park-items">
-                <a href="{{url_for('parkDetail', park_id=park.id)}}">{{park.name}}</a>
+                <a href="{{url_for('parkDetail', park_id=park.id)}}"><h3>{{park.name}}</h3></a>
                 <p>{{park.description}}</p>
               </div>
               {% endif %}
           {% endfor %}
   {% endif %}
 </div>
+</div>
+      <a class="add-btn" href="{{url_for('newPark')}}">
+        <button>Add New Park</button>
+      </a>
+</div>
+
 {% endblock %}

@@ -1,11 +1,16 @@
 {% extends "base.html"%}
 {% include "nav.html" %}
 {% block content %}
+<div class="other-pages-container">
 <h1>Are you sure you want to delete {{park.name}}?</h1>
 <form action="#" method="post">
+<div class="btn-side">
 <button type="submit"> Delete </button>
-</form>
-<a href="{{url_for('parkDetail', park_id=park_id)}}">
-  <button>Cancel</button>
+<a class="cancel" href="{{url_for('parkDetail', park_id=park_id)}}">
+  Cancel
 </a>
+</div>
+</form>
+
+</div>
 {% endblock %}

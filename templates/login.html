@@ -13,13 +13,16 @@
 
 
 <body>
-
+{% extends "base.html"%}
+{% include "nav.html" %}
+{% block content %}
 
 <!-- GOOGLE PLUS SIGN IN-->
 
-
-          <div id="signInButton">
-          <span class="g-signin"
+    <div class="signin-container">
+  <div class="signin-card">
+  <h1 class="title-center"> Sign in with Google </h1>
+          <span class="signin g-signin"
             data-scope="openid email"
             data-clientid="111579470177-r7viep9omvh5896oe34vbk3dm4gtph35.apps.googleusercontent.com"
             data-redirecturi="postmessage"
@@ -28,10 +31,10 @@
             data-callback="signInCallback"
             data-approvalprompt="force">
           </span>
-        </div>
 
 <div id="result"></div>
-
+</div>
+</div>
 <script>
 function signInCallback(authResult) {
   if (authResult['code']) {
@@ -70,7 +73,7 @@ function signInCallback(authResult) {
 
 
 <!--END GOOGLE PLUS SIGN IN -->
-
+{% endblock %}
   </body>
 
   </html>

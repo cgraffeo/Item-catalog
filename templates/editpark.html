@@ -1,9 +1,9 @@
 {% extends "base.html"%}
 {% include "nav.html" %}
 {% block content %}
-  <div>
+  <div class="other-pages-container">
   <h1>Edit {{ editPark.name }} </h1>
-    <form action="#" method="post">
+    <form action="#" method="post" class="form-style">
     <label for="name">Name:</label>
     <input type="text" maxlength="100" name="name" value="{{editPark.name}}">
     <label for="photo">Add a Photo:</label>
@@ -88,12 +88,12 @@
           <input type="radio" name="park_type" id="park_type5" value="Dog" {% if editPark.park_type == 'Dog'%}checked{%endif%}> Dog Park
         </label>
       </div>
-
+  <div class="btns-side">
     <button type="submit"> Edit Park </button>
-    </form>
-    <a href="{{url_for('parkDetail', park_id=park_id)}}">
-  <button>Cancel</button>
+      <a class="cancel" href="{{url_for('parkDetail', park_id=park_id)}}">Cancel
 </a>
+</div>
+    </form>
   </div>
 
 {% endblock %}

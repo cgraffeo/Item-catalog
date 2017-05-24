@@ -1,26 +1,30 @@
-{% extends "base.html"%}
-{% include "nav.html" %}
-{% block content %}
-<h1>{{ park.name }}</h1>
-<div class = 'flash'>
-          {% with messages = get_flashed_messages() %}
-      {% if messages %}
-
+{% extends "base.html"%} {% include "nav.html" %} {% block content %}
+<div class="detail-pages-container">
+    <div class="photo-background">
+        <img class="detail-photo" src="{{ park.photo }}">
+    </div>
+    <div class="detail-holder">
+        <div class="park-details">
+        <div class='flash'>
+        {% with messages = get_flashed_messages() %} {% if messages %}
         <ul>
-        {% for message in messages %}
+            {% for message in messages %}
             <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
+            {% endfor %}
         </ul>
-        {% endif %}
-    {% endwith %}
-
+        {% endif %} {% endwith %}
+    </div>
+            <h1>{{ park.name }}</h1>
+            <p>{{ park.description }}</p>
+            <div class="btns">
+                <a href="{{url_for('deletePark', park_id=park_id)}}">
+                    <button>Delete Park</button>
+                </a>
+                <a href="{{url_for('editPark', park_id=park_id)}}">
+                    <button>Edit Park</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-<p>{{ park.description }}</p>
-<img src="{{ park.photo }}">
-<a href="{{url_for('deletePark', park_id=park_id)}}">
-  <button>Delete Park</button>
-</a>
-<a href="{{url_for('editPark', park_id=park_id)}}">
-  <button>Edit Park</button>
-</a>
 {% endblock %}
