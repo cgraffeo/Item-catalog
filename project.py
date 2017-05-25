@@ -26,6 +26,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
@@ -311,4 +312,4 @@ if __name__ == '__main__':
     app.secret_key = '2UasRgf14Bssg0d2-D2vva'
     app.debug = True
     # app.run(host='0.0.0.0', port=5000)
-    app.run()
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 33507)))
