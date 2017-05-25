@@ -6,7 +6,7 @@
     <form action="#" method="post" class="form-style">
     <label for="name">Name:</label>
     <input type="text" maxlength="100" name="name" value="{{editPark.name}}">
-    <label for="photo">Add a Photo:</label>
+    <label for="photo">Add a Photo URL:</label>
     <input type="text" maxlength="100" name="photo" value="{{editPark.photo}}">
     <select name="state_id">
       <option value='1'{% if editPark.state_id == 1 %}selected{%endif%}>Alabama</option>
