@@ -311,4 +311,4 @@ if __name__ == '__main__':
     app.secret_key = '2UasRgf14Bssg0d2-D2vva'
     app.debug = True
     # app.run(host='0.0.0.0', port=5000)
-app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 33507)))
+    app.run()
