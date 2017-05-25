@@ -3,7 +3,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   /*background: #fafafa;*/
 }
 
@@ -138,6 +138,7 @@ a:hover{
 .photo-background{
   position: fixed;
   z-index: -999;
+  width: 100%;
 }
 .detail-holder{
   display: flex;
@@ -154,6 +155,7 @@ a:hover{
   background: #ffffff;
   box-shadow: 1px 7px 19px -2px rgba(97,96,97,1);
   opacity: .85;
+  width: 40%;
 }
 .detail-photo{
   width: 100%;
