@@ -1,1 +1,1 @@
-web: python project.py --log-file -
+web: python project.py
