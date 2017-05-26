@@ -52,7 +52,7 @@ class Park(Base):
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
-    photo = Column(String(250))
+    photo = Column(String(1000))
     park_type = Column(String(250))
     # type_id = Column(Integer, ForeignKey('park_type.id'))
     # park_type = relationship(ParkType)
