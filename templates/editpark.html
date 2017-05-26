@@ -7,7 +7,7 @@
     <label for="name">Name:</label>
     <input type="text" maxlength="100" name="name" value="{{editPark.name}}">
     <label for="photo">Add a Photo URL:</label>
-    <input type="text" maxlength="100" name="photo" value="{{editPark.photo}}">
+    <input type="text" name="photo" value="{{editPark.photo}}">
     <select name="state_id">
       <option value='1'{% if editPark.state_id == 1 %}selected{%endif%}>Alabama</option>
       <option value='2'{% if editPark.state_id == 2 %}selected{%endif%}>Alaska</option>
